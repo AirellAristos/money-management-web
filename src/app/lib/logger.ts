@@ -2,7 +2,8 @@ import winston from 'winston'
 import path from 'node:path'
 import fs from 'node:fs'
 
-const logDir = path.resolve(__dirname, '../../../../logs')
+// Place logs one level above the project root
+const logDir = path.join(process.cwd(), '..', 'logs')
 
 // pastiin folder logs ada
 if (!fs.existsSync(logDir)) {
