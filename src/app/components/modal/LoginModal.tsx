@@ -1,9 +1,7 @@
-import { googleAuthService } from "@/app/services/googleAuth.service";
 
 export default function LoginModal() {
-    console.log('🔄 Memulai Google login...');
     const handleSignin = () => {
-        googleAuthService.signinWithPopup()
+        console.log('test')
     }
 
     return (

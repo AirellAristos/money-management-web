@@ -15,7 +15,7 @@ export interface JWTRefreshPayload {
 function signAccessToken(accessPayload: JWTAccessPayload) {
     return jwt.sign(
         accessPayload,
-        process.env.NEXT_PUBLIC_JWT_SECRET!,
+        process.env.JWT_SECRET!,
         { expiresIn: '1h' }
     )
 
@@ -24,7 +24,7 @@ function signAccessToken(accessPayload: JWTAccessPayload) {
 function signRefreshToken(refreshPayload: JWTRefreshPayload) {
     return jwt.sign(
         refreshPayload,
-        process.env.NEXT_PUBLIC_JWT_SECRET!,
+        process.env.JWT_SECRET!,
         { expiresIn: '30d' }
     )
 }
@@ -32,13 +32,15 @@ function signRefreshToken(refreshPayload: JWTRefreshPayload) {
 function verifyAccessToken(accessToken: string) {
     return jwt.verify(
         accessToken,
-        process.env.NEXT_PUBLIC_JWT_SECRET!
+        process.env.JWT_SECRET!
     )
 }
 
 function verifyRefreshToken(refreshToken: string) {
     return jwt.verify(
         refreshToken,
-        process.env.NEXT_PUBLIC_JWT_SECRET!
+        process.env.JWT_SECRET!
     )
 }
+
+export { signAccessToken }

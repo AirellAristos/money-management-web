@@ -1,16 +1,16 @@
 import { logger } from "../logger"
 import { pool } from "../pg"
 
-export async function insertUser(username: string, email: string, profilePicture: string, refreshToken: string) {
+export async function insertUser(username: string, email: string, refreshToken: string) {
     const client = await pool.connect()
     try {
         const query = `
-            INSERT INTO users (username, email, profile_picture, refresh_token)
-            VALUES ($1, $2, $3, $4)
+            INSERT INTO users (username, email, refresh_token)
+            VALUES ($1, $2, $3)
             RETURNING *
         `
 
-        const result = await client.query(query, [username, email, profilePicture, refreshToken])
+        const result = await client.query(query, [username, email, refreshToken])
         logger.info('User successfuly created', {
             module: 'queries/user.ts',
             function: 'insertUser',
